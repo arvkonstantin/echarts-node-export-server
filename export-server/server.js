@@ -26,6 +26,13 @@ const url = require('url');
 const { v4: uuidv4 } = require('uuid');
 const {S3} = require('@aws-sdk/client-s3');
 const {PutObjectCommand} = require("@aws-sdk/client-s3");
+const Sentry = require("@sentry/node");
+
+
+Sentry.init({
+  dsn: process.env.SENTRY_DSN,
+  tracesSampleRate: 1.0,
+});
 
 // Use hostname from environment variable HOST, if it is set.
 const hostname = process.env.HOST || 'localhost';
